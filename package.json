@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "node ./scripts/development.js",
     "start": "node index.js",
+    "generate": "node ./src/utils/generator/index.js",
     "build-test": "NODE_ENV=development pm2 start index.js --interpreter ./node_modules/.bin/babel-node --name server_test",
     "build-professora": "NODE_ENV=development pm2 start index.js --interpreter ./node_modules/.bin/babel-node --name server_professora",
     "build-production": "NODE_ENV=development pm2 start index.js --interpreter ./node_modules/.bin/babel-node --name server_production",
