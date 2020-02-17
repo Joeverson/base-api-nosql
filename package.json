@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "node ./scripts/development.js",
+    "dev": "NODE_ENV=development nodemon --exec babel-node bin/www",
+    "test": "NODE_ENV=test ./node_modules/.bin/nyc ./node_modules/.bin/mocha -C ./test/index.js --full-trace --exit",
     "start": "node index.js",
     "build-test": "NODE_ENV=development pm2 start index.js --interpreter ./node_modules/.bin/babel-node --name server_test",
     "build-professora": "NODE_ENV=development pm2 start index.js --interpreter ./node_modules/.bin/babel-node --name server_professora",
@@ -12,7 +13,6 @@
     "production": "node dist/index.js",
     "pretest": "eslint --fix src/**",
     "lint": "./node_modules/.bin/eslint index.js src/ test/",
-    "test": "node ./scripts/test.js",
     "coverage-report": "./node_modules/.bin/nyc report --reporter=lcov",
     "module:create": "node src/utils/generator/auto-create.js",
     "seeds": "DB_HOST=mongodb://localhost DB_NAME=api babel-node src/utils/seeds.js"

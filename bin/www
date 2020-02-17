@@ -16,6 +16,7 @@ import routes from '../src/routes/core';
  *
  * -------------------------------
  * * */
+
 const nodeEnv = process.env.NODE_ENV;
 const file = path.join(__dirname, '../env', `.env.${nodeEnv}`);
 
