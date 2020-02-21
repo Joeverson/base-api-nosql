@@ -3,38 +3,9 @@ import express from 'express';
 import http from 'http';
 import path from 'path';
 import fs from 'fs';
-import dotenv from 'dotenv';
 import middlewares from '../src/middlewares/core';
 import routes from '../src/routes/core';
 
-/**
- * -------------------------------
- *
- *
- * ENV
- *
- *
- * -------------------------------
- * * */
-
-const nodeEnv = process.env.NODE_ENV;
-const file = path.join(__dirname, '../env', `.env.${nodeEnv}`);
-
-// Load env vars
-const envConfig = dotenv.parse(fs.readFileSync(file));
-const addKey = () => {
-  Object.keys(envConfig).forEach((key) => {
-    if (key) {
-      process.env[key] = envConfig[key];
-    }
-  });
-};
-addKey();
-
-/**
- * configuração do dotenv
- */
-dotenv.config();
 
 /**
  * -------------------------------
@@ -45,6 +16,7 @@ dotenv.config();
  *
  * -------------------------------
  * * */
+
 const app = express();
 const server = http.Server(app);
 
@@ -90,5 +62,5 @@ app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
  * */
 
 server.listen(process.env.API_PORT || 3004, process.env.API_HOST || 'localhost', () => {
-  console.log('Funcionando...');
+  console.log('Funcionando...' + (process.env.API_HOST || 'localhost') + ':' + (process.env.API_PORT || 3004));
 });

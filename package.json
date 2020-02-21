@@ -1,6 +1,6 @@
 {
   "name": "api",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "main": "index.js",
   "scripts": {
     "dev": "NODE_ENV=development nodemon --exec babel-node bin/www",
@@ -15,7 +15,7 @@
     "lint": "./node_modules/.bin/eslint index.js src/ test/",
     "coverage-report": "./node_modules/.bin/nyc report --reporter=lcov",
     "module:create": "node src/utils/generator/auto-create.js",
-    "seeds": "DB_HOST=mongodb://localhost DB_NAME=api babel-node src/utils/seeds.js"
+    "seeds": "babel-node src/utils/Seeds"
   },
   "keywords": [],
   "author": "",

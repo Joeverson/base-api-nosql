@@ -58,7 +58,7 @@ const Scarfold = {
    * for to upper case the first letter
    * @param {String} word
    */
-  uFirst (word) {
+  uFirst(word) {
     return word[0].toUpperCase() + word.slice(1)
   },
   /**
@@ -105,19 +105,19 @@ const Scarfold = {
    *
    */
   file: {
-    async create (path, content) {
+    async create(path, content) {
       await fs.appendFile(path, content, (err) => {
         if (err) throw err
 
         console.log(`Criado ${path}!!`)
       })
     },
-    async clean (path) {
+    async clean(path) {
       await fs.truncate(path, 0, () => {
         console.log('Clean!')
       })
     },
-    async new (path, content) {
+    async new(path, content) {
       fs.writeFile(path, content, (err) => {
         if (err) throw err
 
@@ -131,7 +131,7 @@ const Scarfold = {
    *
    *
    */
-  model () {
+  model() {
     return `
 import Database from '../../../config/database'
 
@@ -147,7 +147,7 @@ export default Database.model('${this.underScoreByCamelCase(this.moduleName, '-'
    * criando as rotas padrão
    *
    */
-  router () {
+  router() {
     return `
 import Express from 'express'
 import {
@@ -230,7 +230,7 @@ export default App
    * criando a base para o DAO
    *
    */
-  repository () {
+  repository() {
     return `
 import ${this.underScoreByCamelCase(this.uFirst(this.moduleName), '-')} from './Model'
 
@@ -292,7 +292,7 @@ export default {
    * Validações file content
    */
 
-  validations () {
+  validations() {
     return `
 export default {
 
@@ -303,7 +303,7 @@ export default {
    * Validações file content
    */
 
-  testsUnit () {
+  testsUnit() {
     return `
 /* eslint-disable */
 
@@ -416,7 +416,7 @@ export default () => {
   /**
    * create all module
   */
-  async moduleCreate () {
+  async moduleCreate() {
     // criando os arquivos
     this.file.create(`${__dirname}/${this.path}/${this.moduleName}/Model.js`, this.model())
     this.file.create(`${__dirname}/${this.path}/${this.moduleName}/Repository.js`, this.repository())
@@ -431,7 +431,7 @@ export default () => {
    * executar todo o scarfold e cria a parada
    *
    */
-  async run () {
+  async run() {
     const args = process.argv
 
     // testando se esta sendo passado o parametro
@@ -493,28 +493,28 @@ export default () => {
     scar: this,
     methods: [{
       name: 'model',
-      async run () {
+      async run() {
         await Scarfold.file.create(Scarfold.paths[process.argv[3]], await Scarfold.model())
       }
     }, {
       name: 'repository',
-      async run () {
+      async run() {
         await Scarfold.file.create(Scarfold.paths[process.argv[3]], Scarfold.repository())
       }
     }, {
       name: 'model',
-      async run () {
+      async run() {
         await Scarfold.file.create(Scarfold.paths[process.argv[3]], Scarfold.model())
       }
     }, {
       name: 'routes',
-      async run () {
+      async run() {
         await Scarfold.file.create(Scarfold.paths[process.argv[3]], Scarfold.router())
       }
     }],
     params: [{
       name: '--clean',
-      async run () {
+      async run() {
         await Scarfold.file.clean(Scarfold.paths[process.argv[3]])
       }
     }]

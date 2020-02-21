@@ -82,6 +82,10 @@ Estamos utilizando o winston é uma lib de log bem simples e interesante de se u
 
 [Winston](https://www.npmjs.com/package/winston)
 
+# Database, how create user user
+
+[Create user](https://docs.mongodb.com/manual/reference/method/db.createUser/)
+
 <!-- # auto-create
 
 Para poder criar modulos de forma simples e rapida foi criado o auto-create

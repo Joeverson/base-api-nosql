@@ -1,7 +1,6 @@
 import mongoose from 'mongoose'
 import logger from '../src/utils/logger';
-const DB_URI = `${process.env.DB_HOST}/${process.env.DB_NAME}`
-
+const DB_URI = `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}`
 /**
  * Init database connection
  *
@@ -10,12 +9,15 @@ const DB_URI = `${process.env.DB_HOST}/${process.env.DB_NAME}`
 export default (() => {
   const options = {
     autoIndex: false, // Don't build indexes
-    reconnectInterval: 500, // Reconnect every 500ms
+    // reconnectInterval: 500, // Reconnect every 500ms
     poolSize: 10, // Maintain up to 10 socket connections
     // If not connected, return errors immediately rather than waiting for reconnect
     bufferMaxEntries: 0,
-    autoReconnect: true,
-    useNewUrlParser: true
+    // autoReconnect: true,
+    useNewUrlParser: true,
+    // user: process.env.DB_USER,
+    // pass: process.env.DB_PASS,
+    useUnifiedTopology: true
   };
   mongoose.connect(DB_URI, options)
   mongoose.connection.on('disconnected', () => logger.error('Mongoose disconnected'))

@@ -17,7 +17,7 @@ export default new (winston.Logger)({
     }),
     new (winston.transports.File)({
       name: 'erros',
-      filename: 'errors.log',
+      filename: 'logs/errors.log',
       level: 'error'
     })
   ]
