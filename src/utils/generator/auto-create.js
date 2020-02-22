@@ -167,7 +167,7 @@ App.route('/')
   .get((req, res) => {
     const context = new Context(res)
 
-    Repository.all()
+    Repository.all(req.body)
       .then(data => {
         context.success(data, Messages.${this.moduleName}.success.list)
       })
@@ -245,9 +245,9 @@ export default {
   /**
    * find all users
    */
-  async all () {
+  async all (q) {
     return {
-      data: await ${this.underScoreByCamelCase(this.uFirst(this.moduleName), '-')}.find({})
+      data: await ${this.underScoreByCamelCase(this.uFirst(this.moduleName), '-')}.find(q)
     }
   },
 
