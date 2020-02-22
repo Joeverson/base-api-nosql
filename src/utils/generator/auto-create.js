@@ -167,7 +167,7 @@ App.route('/')
   .get((req, res) => {
     const context = new Context(res)
 
-    Repository.all(req.body)
+    Repository.all(req.query)
       .then(data => {
         context.success(data, Messages.${this.moduleName}.success.list)
       })
