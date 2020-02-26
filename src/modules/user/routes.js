@@ -45,7 +45,7 @@ App.route('/:id')
   .put((req, res) => {
     const context = new Context(res)
 
-    Repository.update(req.params.id, req.query)
+    Repository.update(req.params.id, req.body)
       .then(data => {
         context.success(data, 'user.edit.success')
       })
