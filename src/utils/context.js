@@ -31,7 +31,7 @@ export default class Context {
 
   // caso seja informações de sucessso
   error (except) {
-    const data = _.isString ? { message: except } : { ...except }
+    const data = _.isString(except) ? { message: except } : { ...except }
 
     this.ctx.status.success = false
     this.ctx.status = {
